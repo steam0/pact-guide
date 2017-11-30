@@ -32,25 +32,26 @@ docker run --name pactbroker --link pact-db:postgres -e PACT_BROKER_DATABASE_USE
 
 1. Get a consumer application
 
-```
 Get a copy of the consumer repo: https://github.com/steam0/pact-consumer
 
-`git clone git@github.com:steam0/pact-consumer.git`
+```
+git clone git@github.com:steam0/pact-consumer.git
 ```
 
 2. Run tests and push pact file to broker
 
 ```
-./gradlew clean build publishPact
+./gradlew clean build
 ```
 
 ## Run pact tests
 
 1. Get a producer application
 
-```
 Get a copy of the provider application: https://github.com/steam0/pact-provider
-`git clone git@github.com:steam0/pact-provider.git`
+
+```
+git clone git@github.com:steam0/pact-provider.git
 ```
 
 2. Run tests
