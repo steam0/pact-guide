@@ -4,25 +4,25 @@ This demo is a proof of concept of how it works and why we should implement _Con
 
 ## Testing
 
-There are many different testing types but we will just talk about three of them.
+There are many different testing types. To clarify which problem different types of testing solves we will describe the three most popular type of tests.
 
 ### Unit Testing
 
-Unit testing refers to tests that verifys the functionality of the different functions. These tests are used to validate that the functionality of a given class or method is as you expect.
+Unit testing refers to tests that verifys the internal functionality of a given application. These tests are used to validate that the functionality of a given class or method to make sure that internal functionality does not unintentionally change.
 
-These tests are relatively cheap as they do not require any external applications to be running. 
+These tests are relatively cheap to write and run as they do not require any external applications to be running. 
 
 ### Integration Testing
 
 Integrations testing referes to tests that verify integrations from one application to another. These are typically used by calling services on an external application and verifying the response. Such tests are less cheap than unit tests since you rely on an external service.
 
-Integration tests can also be created such that there is no external call and the test receives a mocked response that you can run your tests with. Using mocks, reduced the cost of integration tests.
+Integration tests can also be created such that there is no external call and the test receives a mocked response that you can run your tests with. Using mocks, reducesthe cost of integration tests.
 
 ###  System Testing
 
-System testing refers to tests that verify that the system meets its requirement. These tests will run through a running system and verify that actions gets executed and that responses are valid. 
+System testing refers to tests that verify that the system meets its requirement. These tests will be applied on a running system and verify that actions gets executed and that responses are valid. 
 
-Writing and executing system tests are very costly.
+Writing and executing system tests are very costly to implement and run, and will often be neglected.
 
 ## Consumer Driven Contracts
 
@@ -32,9 +32,9 @@ CDC is a testing paradigm which let consumers of a service define a contract tha
 
 ## Creating Pacts
 
-When an application is consuming an external service, the application becomes what Pact calls a _consumer_. The external service is now a _provider_ of services to the consumer. The consumer is calling different endpoints on the external service and is writing tests based on the response. 
+When an application is consuming an external service, the application becomes a _consumer_ of that service. The external service is now a _provider_ of services to this consumer. The consumer is calling different endpoints on the external service and is writing integration tests based on the response. 
 
-The consumer can now write a contract to the provider by creating a _Pact_. A pact is an integration test written by the consumer, that the provider will run before building(or deploying) a new version of the application.
+By using CDC the consumer is able to write a contract to the provider by creating a _Pact_. A pact is an integration test written by the consumer, that the provider will run before building(or deploying) a new version of the application.
 
 > As an API is a contract from the provider to any consumer describing how to use services from the provider, a pact is a contract from a given consumer to the provider describing how the consumer uses services from the provider.
 
@@ -46,7 +46,9 @@ Using _Consumer Driven Contracts_ is a way for consumers to write mock integrati
 
 # Pact Demo Installation and Testing Guide
 
-## Install and configure database
+This is a set of example implementations of Pact. First we will set up a Pact broker on the local machine. Then we will set up a consumer, and finally a provider that will use the contract (Pact) created by the consumer and verify that the API is within the consumer contract.
+
+## Install and configure a pact broker database
 1. Start postgres db
 
 ```
@@ -90,7 +92,7 @@ git clone git@github.com:steam0/pact-consumer.git
 ./gradlew clean build
 ```
 
-## Run pact tests
+## Run pact tests on the provider
 
 1. Get a producer application
 
