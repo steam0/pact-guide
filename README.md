@@ -49,8 +49,8 @@ Get a copy of the consumer repo: https://github.com/steam0/pact-consumer
 1. Get a producer application
 
 ```
-Get a copy of the provider application: https://github.com/steam0/pact-producer
-`git clone git@github.com:steam0/pact-producer.git`
+Get a copy of the provider application: https://github.com/steam0/pact-provider
+`git clone git@github.com:steam0/pact-provider.git`
 ```
 
 2. Run tests
