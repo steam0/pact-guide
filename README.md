@@ -10,7 +10,7 @@ There are many different testing types. To clarify which problem different types
 
 ### Unit Testing
 
-Unit testing refers to tests that verifys the internal functionality of a given application. These tests are used to validate that the functionality of a given class or method to make sure that internal functionality does not unintentionally change.
+Unit testing refers to tests that verifies the internal functionality of a given application. These tests are used to validate that the functionality of a given class or method to make sure that internal functionality does not unintentionally change.
 
 These tests are relatively cheap to write and run as they do not require any external applications to be running. 
 
@@ -22,7 +22,7 @@ Integration tests can also be created such that there is no external call and th
 
 ###  System Testing
 
-System testing refers to tests that verify that the system meets its requirement. These tests will be applied on a running system and verify that actions gets executed and that responses are valid. 
+System testing refers to tests that verify that the system meets its requirement. These tests will be executed on a system of running applications and verify that actions get executed properly and that responses are valid.
 
 Writing and executing system tests are very costly to implement and run, and will often be neglected.
 
@@ -45,6 +45,17 @@ By using CDC the consumer is able to write a contract to the provider by creatin
 An API is a contract. The provider guarantees that if you use the API as described, they will provide responses according to the API-specification. The consumer writes integration tests to confirm that the API works as described for the consumer service. However this does not provide any guidelines for the provider to make sure that they don't break the consumer integration.
 
 Using _Consumer Driven Contracts_ is a way for consumers to write mock integration tests and publish the contract (Pact) to a broker to let the provider access it.
+
+# Why should you apply Consumer Driven Contracts to your system
+
+> If you don't know who your consumers are you will not be able to predict how your API is being used.
+
+When developing applications, and specifically applications in a microservice architechture, tests are written to ensure system stability and to provide a solid foundation for future development. In a microservice architecture it is not always clear which applications are using your service. When accepting this premise it becomes clear that having unit tests and integration tests would be useless for the provider of an API. If you don't know who your consumers are you will not be able to predict how your API is being used and even if you do know who your consumers are you still won't successfully predict how they use your API.
+
+As discussed earlier will Consumer Driven Contracts solve this problem for you by providing a design pattern for consumers to apply to their tests. Since all applications *_should_* have both unit tests and mocked integration tests there is no significant code change needed on the consumer side to create a contract for the provider to validate.
+
+Consumer Driven Contracts will give your developers the confidence to keep deploying new versions of their applications while knowing that they won't break functionality for any of their consumers.
+
 
 # Pact Demo Installation and Testing Guide
 
@@ -111,5 +122,10 @@ git clone git@github.com:steam0/pact-provider.git
 ```
 
 
+# Notes for future development of this guide
 
-
+- Impossible to predict all corner cases of usages
+- > API versioning is a great theory that is awful to implement. When building microservices and doing multiple deploys per day developers may risk having to support multiple different API-versions. API versioning is great while having regular scheduled system upgrades.
+- Discuss negative sides. Why wont this work? 
+- CDC For internal use only? Why/Why not external use? (A tool for external consumers to inform about usage/ An external CDC is not a binding contract but a guideline/information pipeline to the provider)
+- My test doesnt work, whos problem is it?
