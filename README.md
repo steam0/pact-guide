@@ -60,7 +60,7 @@ Consumer Driven Contracts will give your developers the confidence to keep deplo
 
 > Using Consumer Driven Contracts will move the responsibilty of compatibility from the consumer to the API provider
 
-It is the provider application that serves an API that decides what their contract to the world is and it is up to the consumer of an API to comply with this contract. This is one of the main objections to implementing the CDC paradigm. This is however not true. On the one hand you want to be in control of your own API, but you also want to attract users to your API. It is important to keep an open mind and assess your consumers. The Consumer Driven Contracts paradigm provide a symbiotic relationship between the API provider and the consumer much like the symbiotic relationship between the seller (API provider) and the buyer (API consumer).
+It is the API provider that decides what their contract to the world is and it is up to the consumer of an API to comply with this contract. This is one of the main objections to implementing the CDC paradigm. This is however not true. On the one hand you want to be in control of your own API, but you also want to attract users to your API. It is important to keep an open mind and assess your consumers. The Consumer Driven Contracts paradigm provide a symbiotic relationship between the API provider and the consumer much like the symbiotic relationship between the seller (API provider) and the buyer (API consumer).
 
 > Having Consumer Driven Contracts will prevent developers from making changes as the tests will break
 
