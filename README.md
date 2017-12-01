@@ -46,7 +46,7 @@ An API is a contract. The provider guarantees that if you use the API as describ
 
 Using _Consumer Driven Contracts_ is a way for consumers to write mock integration tests and publish the contract (Pact) to a broker to let the provider access it.
 
-# Why should you apply Consumer Driven Contracts to your system
+## Why should you apply Consumer Driven Contracts to your system
 
 > If you don't know who your consumers are you will not be able to predict how your API is being used.
 
@@ -56,9 +56,8 @@ As discussed earlier will Consumer Driven Contracts solve this problem for you b
 
 Consumer Driven Contracts will give your developers the confidence to keep deploying new versions of their applications while knowing that they won't break functionality for any of their consumers.
 
-# Objections to Consumer Driven Contracts
+## Objections to Consumer Driven Contracts
 
-- Breaking Pacts will prevent changes/deploys
 > Using Consumer Driven Contracts will move the responsibilty of compatibility from the consumer to the API provider
 
 It is the provider application that serves an API that decides what their contract to the world is and it is up to the consumer of an API to comply with this contract. This is one of the main objections to implementing the CDC paradigm. This is however not true. On the one hand you want to be in control of your own API, but you also want to attract users to your API. It is important to keep an open mind and assess your consumers. The Consumer Driven Contracts paradigm provide a symbiotic relationship between the API provider and the consumer much like the symbiotic relationship between the seller (API provider) and the buyer (API consumer).
@@ -67,7 +66,7 @@ It is the provider application that serves an API that decides what their contra
 
 This is not entirely true. Using CDC will help developers by making them observant on breaking changes in their code. By using a CDC framework like Pact makes it abundantly clear who uses your service and in what way they are using it. If a change break a consumer this creates an excellent opportunity for developers to _talk_ with each other. Communication is the key to success and CDC help consumers and providers communicate.
 
-If and when a CDC test break should developers from the provider investigate if the breaking change is intended and notify the consumer about it. If the breaking change is intended both teams of developers will need to cooperate with each other to solve the issue. If the teams cannot agree on who should fix this issue, then both teams need to grow up. Symbiotic relationships require that both sides give what the other need. Ultimately, a CDC is supposed to be a guideline for the provider and unless there are other legal contracts involved then the provider should just go ahead and deploy the changes. Temporary API-versioning can also be considered in extreme cases
+If and when a CDC test break should developers from the provider investigate if the breaking change is intended and notify the consumer about it. If the breaking change is intended both teams of developers will need to cooperate with each other to solve the issue. If the teams cannot agree on who should fix this issue, then both teams need to grow up. Symbiotic relationships require that both sides give what the other need. A CDC test should not prohibit further development of an application so a CDC should be considered a guideline for the provider to ensure service reliability. Unless there are other legal contracts involved then the provider should just go ahead and deploy the changes. Temporary API-versioning of the specific failing tests can also be considered in extreme cases.
 
 # Pact Demo Installation and Testing Guide
 
