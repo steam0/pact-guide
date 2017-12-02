@@ -14,11 +14,15 @@ Unit testing refers to tests that verifies the internal functionality of a given
 
 These tests are relatively cheap to write and run as they do not require any external applications to be running. Unit tests will only be able to detect errors in internal logic.
 
+- Bar graph containing two bars: cost, confidence
+
 ### Integration tests
 
 Integrations testing referes to tests that verify integrations from one application to another. These are typically used by calling endpoint provided by an external application and verifying the response. Such tests are less cheap than unit tests since you rely on an external service. Integration tests will require that all external services are online for the tests to pass. This is often not the case and integration tests will often be ignored.
 
 Integration tests can also be created such that there is no external call and the test receives a mocked response that you can run your tests with. Using mocks, reduces the cost of integration tests, but it creates other problem that will be discussed later.
+
+- Bar graph containing two bars: cost, confidence
 
 ###  System tests
 
@@ -26,17 +30,15 @@ System testing refers to tests that verify that the system meets its requirement
 
 Writing and executing system tests are very costly to implement and run, and will often be neglected and completely ignored.
 
+- Bar graph containing two bars: cost, confidence
+
 ## Consumer Driven Contracts
 
-Knowing a little bit about testing show that the only type of test that is low cost to write and run are _unit tests_ and _mocked integration tests_. Developers often forget or avoid implementing good integration or system tests because of the cost which then removes the confidence these tests provide. There is also an important problem with using mocked integration tests as a cost effective option. If and when a service changes its interface, the mocked integration test on the consumer side will fail to detect these changes and the consumer application will crash even while having green builds. This is where Consumer Driven Contracts might help during development.
+Knowing a little bit about testing bring to light a big problem with testing software: The only types of tests that are low cost to write and run are _unit tests_ and _mocked integration tests_. Developers often forget or avoid implementing good integration or system tests because of the cost which then removes the confidence these tests provide. There is also an important problem with using mocked integration tests as a cost effective option. If and when a service changes its interface, the mocked integration test on the consumer side will fail to detect these changes and the consumer application will crash even while having green builds. Consumer Driven Contracts provides a solution to this exact problem.
 
-CDC is a testing paradigm which let consumers of a service define a contract that the service can validate against. These tests are an alternative to the traditional integration test, but are located on the service provider side.
-
-## Pacts
+CDC is a testing paradigm which let consumers of a service define a contract that the service can validate against. These tests are an alternative to the traditional integration test, but are executed on both the consumer and the service provider application.
 
 When an application is consuming an external service, the application becomes a _consumer_ of that service. The external service is now a _provider_ of services to this consumer. The consumer is calling different endpoints on the external service and is writing integration tests based on the response. 
-
-By using CDC the consumer is able to write a contract to the provider by creating a _Pact_. A pact is an integration test written by the consumer, that the provider will run before building(or deploying) a new version of the application.
 
 ## APIs are contracts
 
@@ -44,7 +46,11 @@ By using CDC the consumer is able to write a contract to the provider by creatin
 
 An API is a contract. The provider guarantees that if you use the API as described, they will provide responses according to the API-specification. The consumer writes integration tests to confirm that the API works as described for the consumer service. However this does not provide any guidelines for the provider to make sure that they don't break the consumer integration.
 
-Using _Consumer Driven Contracts_ is a way for consumers to write mock integration tests and publish the contract (Pact) to a broker to let the provider access it.
+Using _Consumer Driven Contracts_ is a way for consumers to write mock integration tests, publish the contract to a broker and let the provider access it.
+
+## Pacts
+
+Pact is a framework for implementing Consumer Driven Contracts in your applications. The consumer is able to write a contract to the provider by creating a _Pact_. A pact is an integration test written by the consumer, that the provider will run before building (or deploying) a new version of their application.
 
 ## Why should you apply Consumer Driven Contracts to your system
 
