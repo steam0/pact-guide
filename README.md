@@ -4,31 +4,31 @@
 
 This demo is a proof of concept of how it works and why we should implement _Consumer Driven Contracts_ (CDC) when developing microservices. In this demo CDC is implemented using the Pact framework.
 
-## Testing
+## Tests
 
-There are many different testing types. To clarify which problem different types of testing solves we will describe the three most popular type of tests.
+There are many different testing types. Different types of tests have different strengths and weaknesses. There is also a massive difference in the _cost_ of implementing different types of tests. This article will only mention the three types that are relevant when talking about Consumer Driven Contracts.
 
-### Unit Testing
+### Unit tests
 
 Unit testing refers to tests that verifies the internal functionality of a given application. These tests are used to validate that the functionality of a given class or method to make sure that internal functionality does not unintentionally change.
 
-These tests are relatively cheap to write and run as they do not require any external applications to be running. 
+These tests are relatively cheap to write and run as they do not require any external applications to be running. Unit tests will only be able to detect errors in internal logic.
 
-### Integration Testing
+### Integration tests
 
-Integrations testing referes to tests that verify integrations from one application to another. These are typically used by calling services on an external application and verifying the response. Such tests are less cheap than unit tests since you rely on an external service.
+Integrations testing referes to tests that verify integrations from one application to another. These are typically used by calling endpoint provided by an external application and verifying the response. Such tests are less cheap than unit tests since you rely on an external service. Integration tests will require that all external services are online for the tests to pass. This is often not the case and integration tests will often be ignored.
 
-Integration tests can also be created such that there is no external call and the test receives a mocked response that you can run your tests with. Using mocks, reducesthe cost of integration tests.
+Integration tests can also be created such that there is no external call and the test receives a mocked response that you can run your tests with. Using mocks, reduces the cost of integration tests, but it creates other problem that will be discussed later.
 
-###  System Testing
+###  System tests
 
 System testing refers to tests that verify that the system meets its requirement. These tests will be executed on a system of running applications and verify that actions get executed properly and that responses are valid.
 
-Writing and executing system tests are very costly to implement and run, and will often be neglected.
+Writing and executing system tests are very costly to implement and run, and will often be neglected and completely ignored.
 
 ## Consumer Driven Contracts
 
-Knowing a little bit about testing show that the only type of test that is low cost to write and run are _unit tests_ and _mocked integration tests_. Because of this developers often forget or avoid implementing good integration or system tests. There is also an important problem with using mocked integration tests. What happens if the service changes what it returns? A mocked integration thest on the consumer side will not detect these changes and the consumer application will crash even while having green builds. This is where Consumer Driven Contracts might help during development.
+Knowing a little bit about testing show that the only type of test that is low cost to write and run are _unit tests_ and _mocked integration tests_. Developers often forget or avoid implementing good integration or system tests because of the cost which then removes the confidence these tests provide. There is also an important problem with using mocked integration tests as a cost effective option. If and when a service changes its interface, the mocked integration test on the consumer side will fail to detect these changes and the consumer application will crash even while having green builds. This is where Consumer Driven Contracts might help during development.
 
 CDC is a testing paradigm which let consumers of a service define a contract that the service can validate against. These tests are an alternative to the traditional integration test, but are located on the service provider side.
 
@@ -75,8 +75,6 @@ If and when a CDC test break should developers from the provider investigate if 
 API versioning is a utopian dream. Not because it is impossible to implement, but because it ultimately will result in more code to maintain which again inhibits development speed. Having multiple versions of an API makes the codebase unneccesarily large and makes it more likely to contain errors. In some cases it is unavoidable to have API versioning and there is absolutely a reason to consider implementing this into applications providing APIs, but be careful of how many versions of your API you keep providing.
 
 Even though API versioning makes it possible to support consumers depending on older versions of an API, it does not provide the desired confidence while maintaining the API. While correcting a mistake in an older API version the change might break the consumers of that API version. This is where using CDC will make developers more confident when making changes to the code.
-
-- CDC can decrease number of api versions by telling you when you break something
 
 
 # Pact Demo Installation and Testing Guide
@@ -153,3 +151,4 @@ git clone git@github.com:steam0/pact-provider.git
 - My test doesnt work, whos problem is it?
 - Good and bad examples of cdc-tests https://docs.pact.io/best_practices/contract_tests_not_functional_tests.html
 - It is impossible to write perfect API documentation. (All contracts will be flawed)
+- CDC can decrease number of api versions by telling you when you break something
