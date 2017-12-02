@@ -28,19 +28,19 @@ Writing and executing system tests are very costly to implement and run, and wil
 
 ## Consumer Driven Contracts
 
-Knowing a little bit about testing, we see that the only tests that is low cost to write and run are _unit tests_ and _mocked integration tests_. Because of this developers often forget or avoid implementing good integration or system test. There is also an important problem with using mocked integration tests. What happens if the service changes what it returns? A mocked integration thest on the consumer side will not detect these changes. This is where Consumer Driven Contracts might help during development.
+Knowing a little bit about testing show that the only type of test that is low cost to write and run are _unit tests_ and _mocked integration tests_. Because of this developers often forget or avoid implementing good integration or system tests. There is also an important problem with using mocked integration tests. What happens if the service changes what it returns? A mocked integration thest on the consumer side will not detect these changes and the consumer application will crash even while having green builds. This is where Consumer Driven Contracts might help during development.
 
-CDC is a testing paradigm which let consumers of a service define a contract that the service can validate against. These tests are an alternative to the traditional _Integration Test_, but are located on the service provider side.
+CDC is a testing paradigm which let consumers of a service define a contract that the service can validate against. These tests are an alternative to the traditional integration test, but are located on the service provider side.
 
-## Creating Pacts
+## Pacts
 
 When an application is consuming an external service, the application becomes a _consumer_ of that service. The external service is now a _provider_ of services to this consumer. The consumer is calling different endpoints on the external service and is writing integration tests based on the response. 
 
 By using CDC the consumer is able to write a contract to the provider by creating a _Pact_. A pact is an integration test written by the consumer, that the provider will run before building(or deploying) a new version of the application.
 
-> As an API is a contract from the provider to any consumer describing how to use services from the provider, a pact is a contract from a given consumer to the provider describing how the consumer uses services from the provider.
-
 ## APIs are contracts
+
+> As an API is a contract from the provider to any consumer describing how to use services from the provider, a pact is a contract from a given consumer to the provider describing how the consumer uses services from the provider.
 
 An API is a contract. The provider guarantees that if you use the API as described, they will provide responses according to the API-specification. The consumer writes integration tests to confirm that the API works as described for the consumer service. However this does not provide any guidelines for the provider to make sure that they don't break the consumer integration.
 
@@ -67,6 +67,17 @@ It is the API provider that decides what their contract to the world is and it i
 This is not entirely true. Using CDC will help developers by making them observant on breaking changes in their code. By using a CDC framework like Pact makes it abundantly clear who uses your service and in what way they are using it. If a change break a consumer this creates an excellent opportunity for developers to _talk_ with each other. Communication is the key to success and CDC help consumers and providers communicate.
 
 If and when a CDC test break should developers from the provider investigate if the breaking change is intended and notify the consumer about it. If the breaking change is intended both teams of developers will need to cooperate with each other to solve the issue. If the teams cannot agree on who should fix this issue, then both teams need to grow up. Symbiotic relationships require that both sides give what the other need. A CDC test should not prohibit further development of an application so a CDC should be considered a guideline for the provider to ensure service reliability. Unless there are other legal contracts involved then the provider should just go ahead and deploy the changes. Temporary API-versioning of the specific failing tests can also be considered in extreme cases.
+
+## API versioning
+
+> API versioning is a great theory that is awful to implement. When building microservices and doing multiple deploys per day developers may risk having to support multiple different API-versions. API versioning is great while having regular scheduled system upgrades.
+
+API versioning is a utopian dream. Not because it is impossible to implement, but because it ultimately will result in more code to maintain which again inhibits development speed. Having multiple versions of an API makes the codebase unneccesarily large and makes it more likely to contain errors. In some cases it is unavoidable to have API versioning and there is absolutely a reason to consider implementing this into applications providing APIs, but be careful of how many versions of your API you keep providing.
+
+Even though API versioning makes it possible to support consumers depending on older versions of an API, it does not provide the desired confidence while maintaining the API. While correcting a mistake in an older API version the change might break the consumers of that API version. This is where using CDC will make developers more confident when making changes to the code.
+
+- CDC can decrease number of api versions by telling you when you break something
+
 
 # Pact Demo Installation and Testing Guide
 
@@ -134,10 +145,11 @@ git clone git@github.com:steam0/pact-provider.git
 
 
 # Notes for future development of this guide
-
+- Releasing new versions with confidence
 - Impossible to predict all corner cases of usages
 - > API versioning is a great theory that is awful to implement. When building microservices and doing multiple deploys per day developers may risk having to support multiple different API-versions. API versioning is great while having regular scheduled system upgrades.
 - Discuss negative sides. Why wont this work? 
 - CDC For internal use only? Why/Why not external use? (A tool for external consumers to inform about usage/ An external CDC is not a binding contract but a guideline/information pipeline to the provider)
 - My test doesnt work, whos problem is it?
 - Good and bad examples of cdc-tests https://docs.pact.io/best_practices/contract_tests_not_functional_tests.html
+- It is impossible to write perfect API documentation. (All contracts will be flawed)
