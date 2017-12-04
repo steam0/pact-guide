@@ -76,12 +76,15 @@ If and when a CDC test break should developers from the provider investigate if 
 
 ## API versioning
 
-> API versioning is a great theory that is awful to implement. When building microservices and doing multiple deploys per day developers may risk having to support multiple different API-versions. API versioning is great while having regular scheduled system upgrades.
+API versioning is an important tool to use in order to make microservices truly decoupled from each other. There are many different ways of implementing API versioning, but that will not be discussed here. API versioning frees an application API from all its existing contracts by defining a new version of that contract. By doing so a developer will then have to support and maintain `n+1` versions of it's API. This makes API versioning a tool that should be used carefully.
 
-API versioning is a utopian dream. Not because it is impossible to implement, but because it ultimately will result in more code to maintain which again inhibits development speed. Having multiple versions of an API makes the codebase unneccesarily large and makes it more likely to contain errors. In some cases it is unavoidable to have API versioning and there is absolutely a reason to consider implementing this into applications providing APIs, but be careful of how many versions of your API you keep providing.
+> API versioning is a great theory that might be awful to implement. When building microservices and doing multiple deploys per day, developers may risk having to create new versions of the API every day.
 
-Even though API versioning makes it possible to support consumers depending on older versions of an API, it does not provide the desired confidence while maintaining the API. While correcting a mistake in an older API version the change might break the consumers of that API version. This is where using CDC will make developers more confident when making changes to the code.
+API versioning is not by itself how to solve decoupled releases of microservices. Not because it is impossible to implement, but because it ultimately will result in having way more code to maintain which again inhibits development speed. Having multiple versions of an API makes the codebase unneccesarily large and makes it more likely to contain errors.
 
+> API versioning does not answer the question: When do I need to create a new API version? 
+
+Even though API versioning makes it possible to support consumers depending on older versions of an API, it does not provide the desired confidence while maintaining the API. While correcting a mistake in an older API version the change might break the consumers of that API version. This is where using Consumer Driven Contracts will make developers more confident when making changes to the code. Developers will be able to maintain older versions of an API with confidence by validating all consumers of that specific API version.
 
 # Pact Demo Installation and Testing Guide
 
