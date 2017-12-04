@@ -48,7 +48,7 @@ When an application is consuming an external service, the application becomes a 
 
 > As an API is a contract from the provider to any consumer describing how to use services from the provider, a pact is a contract from a given consumer to the provider describing how the consumer uses services from the provider.
 
-An API is a contract. The provider guarantees that if you use the API as described, they will provide responses according to the API-specification. [_The OpenAPI Specificatio_](https://github.com/OAI/OpenAPI-Specification) is a framework for an API provider to expose APIs as a contract using json or yaml. 
+An API is a contract. The provider guarantees that if you use the API as described, they will provide responses according to the API-specification. [_The OpenAPI Specification_](https://github.com/OAI/OpenAPI-Specification) is a framework for an API provider to expose APIs as a contract using json or yaml. 
 
 A consumer will usually write integration tests to confirm that the API works as described for the consumer service. However this does not provide any guidelines for the provider to make sure that they don't break the consumer integration while making changes to the API providers codebase.
 
@@ -57,7 +57,7 @@ _Consumer Driven Contracts_ let consumers to write mock integration tests and cr
 
 ## Pact
 
-Pact is a framework for implementing Consumer Driven Contracts in an applications. The consumer is able to write a contract to the provider by creating a _pact_. A pact is an integration test written by the consumer, that the provider will run before building (or deploying) a new version of their application. A pact file will contain information about which endpoint is called, request data and what the response from calling this endpoint should be.
+Pact is a framework for implementing Consumer Driven Contracts in an applications. The consumer is able to write a contract to the provider by creating a _pact_. A pact is an integration test written by the consumer, that the provider can add to their test suite and run before building (or deploying) a new version of the application. A pact file will contain information about which endpoint is called, request data and what the response from calling this endpoint should be.
 
 ## Publishing pacts
 
@@ -81,13 +81,14 @@ Consumer Driven Contracts will give your developers the confidence to keep deplo
 
 > Using Consumer Driven Contracts will move the responsibilty of compatibility from the consumer to the API provider
 
-It is the API provider that decides what their contract to the world is and it is up to the consumer of an API to comply with this contract. This is one of the main objections to implementing the CDC paradigm. This is however not true. On the one hand you want to be in control of your own API, but you also want to attract users to your API. It is important to keep an open mind and assess your consumers. The Consumer Driven Contracts paradigm provide a symbiotic relationship between the API provider and the consumer much like the symbiotic relationship between the seller (API provider) and the buyer (API consumer).
+It is the API provider that decides what their contract to the world is and it is up to the consumer of an API to comply with this contract. This is one of the main objections to implementing the CDC paradigm. This is however not true. On one hand you want to be in control of your own API, but you also want to attract users to your API. It is important to keep an open mind and assess your consumers. The Consumer Driven Contracts paradigm provide a symbiotic relationship between the API provider and the consumer much like the symbiotic relationship between the seller (API provider) and the buyer (API consumer).
 
 > Having Consumer Driven Contracts will prevent developers from making changes as the tests will break
 
-This is not entirely true. Using CDC will help developers by making them observant on breaking changes in their code. By using a CDC framework like Pact makes it abundantly clear who uses your service and in what way they are using it. If a change break a consumer this creates an excellent opportunity for developers to _talk_ with each other. Communication is the key to success and CDC help consumers and providers communicate.
+This is not entirely true. Using CDC will help developers by making them observant on breaking changes in their code. By using a CDC framework like Pact makes it abundantly clear who uses your service and how they are using it. If a change break a consumer this creates an excellent opportunity for developers to _talk_ with each other. Communication is the key to success and CDC help consumers and providers communicate.
 
-If and when a CDC test break should developers from the provider investigate if the breaking change is intended and notify the consumer about it. If the breaking change is intended both teams of developers will need to cooperate with each other to solve the issue. If the teams cannot agree on who should fix this issue, then both teams need to grow up. Symbiotic relationships require that both sides give what the other need. A CDC test should not prohibit further development of an application so a CDC should be considered a guideline for the provider to ensure service reliability. Unless there are other legal contracts involved then the provider should just go ahead and deploy the changes. Temporary API-versioning of the specific failing tests can also be considered in extreme cases.
+
+If and/or when a CDC test break developers from the provider should investigate if the breaking change is intended and notify the consumer about it. If the breaking change is intended both teams of developers will need to cooperate with each other to solve the issue. If the teams cannot agree on who should fix this issue, then both teams need to grow up. Symbiotic relationships require that both sides give what the other need. A CDC test should not prohibit further development of an application so a CDC should be considered a guideline for the provider to ensure service reliability. Unless there are other legal contracts involved then the provider should just go ahead and deploy the changes. Temporary API-versioning of the specific failing tests can also be considered in extreme cases.
 
 ## API versioning
 
@@ -176,3 +177,4 @@ git clone git@github.com:steam0/pact-provider.git
 - Good and bad examples of cdc-tests https://docs.pact.io/best_practices/contract_tests_not_functional_tests.html
 - It is impossible to write perfect API documentation. (All contracts will be flawed)
 - CDC can decrease number of api versions by telling you when you break something
+- CDC as internal or external availability?
