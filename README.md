@@ -34,9 +34,13 @@ Writing and executing system tests are very costly to implement and run, and wil
 
 ## Consumer Driven Contracts
 
-Knowing a little bit about testing bring to light a big problem with testing software: The only types of tests that are low cost to write and run are _unit tests_ and _mocked integration tests_. Developers often forget or avoid implementing good integration or system tests because of the cost which then removes the confidence these tests provide. There is also an important problem with using mocked integration tests as a cost effective option. If and when a service changes its interface, the mocked integration test on the consumer side will fail to detect these changes and the consumer application will crash even while having green builds. Consumer Driven Contracts provides a solution to this exact problem.
+- Illustration of testing pyramid with traditional tests and cost of tests (ut -> mocked it -> it -> st)
+
+A common denominator in all testing is the cost of writing and running tests. The only types of tests that are low cost to write and run are _unit tests_ and _mocked integration tests_. Developers often forget or avoid implementing good integration or system tests because of the cost which then removes the confidence these tests provide. There is also an issue with using mocked integration tests as a cost effective option. If and when a service changes its interface, the mocked integration test on the consumer side will fail to detect these changes and the consumer application will crash even while having green builds. Consumer Driven Contracts provides a solution to this exact problem.
 
 Consumer Driven Contracts is a testing paradigm which let consumers of a service define a contract that the service can validate against. These tests are an alternative to the traditional (mocked)integration test, but are executed on both the consumer and the service provider application.
+
+- Illustration of testing pyramid with cdc
 
 When an application is consuming an external service, the application becomes a _consumer_ of that service. The external service is now a _provider_ of services to this consumer. The consumer is calling different endpoints on the external service and is writing integration tests based on the response. 
 
@@ -44,15 +48,24 @@ When an application is consuming an external service, the application becomes a 
 
 > As an API is a contract from the provider to any consumer describing how to use services from the provider, a pact is a contract from a given consumer to the provider describing how the consumer uses services from the provider.
 
-An API is a contract. The provider guarantees that if you use the API as described, they will provide responses according to the API-specification. [_The OpenAPI Specificatio_](https://github.com/OAI/OpenAPI-Specification) is a framework for an API provider to exposed it's API as a contract using json or yaml. The consumer writes integration tests to confirm that the API works as described for the consumer service. However this does not provide any guidelines for the provider to make sure that they don't break the consumer integration.
+An API is a contract. The provider guarantees that if you use the API as described, they will provide responses according to the API-specification. [_The OpenAPI Specificatio_](https://github.com/OAI/OpenAPI-Specification) is a framework for an API provider to expose APIs as a contract using json or yaml. 
 
-Using _Consumer Driven Contracts_ is a way for consumers to write mock integration tests, publish the contract to a broker and let the provider access it.
+A consumer will usually write integration tests to confirm that the API works as described for the consumer service. However this does not provide any guidelines for the provider to make sure that they don't break the consumer integration while making changes to the API providers codebase.
 
-- Illustration of an API as a contract.
+_Consumer Driven Contracts_ let consumers to write mock integration tests and create a _consumer contract_ that defines how the consumer is using the API. 
 
-## Pacts
 
-Pact is a framework for implementing Consumer Driven Contracts in your applications. The consumer is able to write a contract to the provider by creating a _Pact_. A pact is an integration test written by the consumer, that the provider will run before building (or deploying) a new version of their application.
+## Pact
+
+Pact is a framework for implementing Consumer Driven Contracts in an applications. The consumer is able to write a contract to the provider by creating a _pact_. A pact is an integration test written by the consumer, that the provider will run before building (or deploying) a new version of their application. A pact file will contain information about which endpoint is called, request data and what the response from calling this endpoint should be.
+
+## Publishing pacts
+
+When a consumer have generated a pact file it should publish this to the providers. This can be done by attaching the file as a part of the repository (do not do this), by exposing the file at a url (should not do this) or by publishing it to a shared _broker_. 
+
+A pact broker is a separate application which should be a part of any system implementing pacts. The pact broker will be waiting for pact files from any consumer and is indexing them based on which provider they are communicating with. When a pact is published to the broker it becomes available to any provider that want to validate them.
+
+- Illustration of Consumer, pact file , broker, and a provider accessing the pact file from the broker
 
 ## Why should you apply Consumer Driven Contracts to your system
 
