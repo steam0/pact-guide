@@ -109,11 +109,6 @@ Some services will have external consumers that are known to the provider. In th
 
 Any organization provides open APIs should not let unknown consumers provide contracts to the providing API due to the unneccesary dependencies that will be created. In the case where open APIs let all their consumers provide contracts they should always use it as a guideline. For open APIs this data will often not be useful due to the lack of implementation on the consumer side. If only one consumer out of a houndred does this it will not help a development team.
 
-- Should definitely be used internally in a team developing microservices
-- Should almost definitely be used internally in an organization
-- Can be used for external consumers if you know who they are
-- Should not be used for open APIs
-
 - Image that split internal use and external use based on requirement (internal) and guideline (external)
 
 ## API versioning
