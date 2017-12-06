@@ -99,14 +99,22 @@ A development team should usually consist of 3-9 people and a can have resposibi
 
 > Consumer Driven Contracts should almost definitely be used internally in an organization
 
-Organizations come in many different shapes and sizes. Because of that, there is no definite way to decide if an organization should use Consumer Driven Contracts or not. It 
-- Image that split internal use and external use based on requirement (internal) and guideline (external)
+Organizations come in many different shapes and sizes. Because of that, there is no definite way to decide if an organization should use Consumer Driven Contracts or not. It ultimately depends on the size of the organization and the number of services that the organization support and inn most cases the answer will be yes. Larger organizations that produce microservices will usually have multiple development teams that consume services created by other internal teams and these organizations should apply Consumer Driven Contracts to their development. Not only will this create a great platform for teams to communicate with each other but it will improve stability of the entire communications.
+
+> Consumer Driven Contracts can be used for external consumers
+
+Some services will have external consumers that are known to the provider. In these cases can Consumer Driven Contracts be exposed from the providing organization to their consumers. By letting their known customers show how they are using the API will let the providing organization make better decisions on what needs to be improved and how they can do it without breaking customer systems. Consumer Driven Contracts from an external consumer should always be described as guidelines and not absolute rules. The external consumer should always be notified if and when onfe of their contracts will get broken. 
+
+> Consumer Driven Contracts should not be used for open APIs
+
+Any organization provides open APIs should not let unknown consumers provide contracts to the providing API due to the unneccesary dependencies that will be created. In the case where open APIs let all their consumers provide contracts they should always use it as a guideline. For open APIs this data will often not be useful due to the lack of implementation on the consumer side. If only one consumer out of a houndred does this it will not help a development team.
 
 - Should definitely be used internally in a team developing microservices
 - Should almost definitely be used internally in an organization
 - Can be used for external consumers if you know who they are
 - Should not be used for open APIs
 
+- Image that split internal use and external use based on requirement (internal) and guideline (external)
 
 ## API versioning
 
