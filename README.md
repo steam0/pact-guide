@@ -14,7 +14,7 @@ Unit testing refers to tests that verifies the internal functionality of a given
 
 These tests are relatively cheap to write and run as they do not require any external applications to be running. Unit tests will only be able to detect errors in internal logic.
 
-- Bar graph containing two bars: cost, confidence
+- Bar graph containing three bars: cost to write, cost to run, confidence
 
 ### Integration tests
 
@@ -22,7 +22,7 @@ Integrations testing referes to tests that verify integrations from one applicat
 
 Integration tests can also be created such that there is no external call and the test receives a mocked response that you can run your tests with. Using mocks, reduces the cost of integration tests, but it creates other problem that will be discussed later.
 
-- Bar graph containing two bars: cost, confidence
+- Bar graph containing three bars: cost to write, cost to run, confidence
 
 ###  System tests
 
@@ -30,7 +30,7 @@ System testing refers to tests that verify that the system meets its requirement
 
 Writing and executing system tests are very costly to implement and run, and will often be neglected and completely ignored.
 
-- Bar graph containing two bars: cost, confidence
+- Bar graph containing three bars: cost to write, cost to run, confidence
 
 ## Consumer Driven Contracts
 
@@ -67,7 +67,7 @@ A pact broker is a separate application which should be a part of any system imp
 
 - Illustration of Consumer, pact file , broker, and a provider accessing the pact file from the broker
 
-## Why should you apply Consumer Driven Contracts to your system
+## Why you should apply Consumer Driven Contracts to your system
 
 > If you don't know who your consumers are you will not be able to predict how your API is being used.
 
@@ -85,10 +85,28 @@ It is the API provider that decides what their contract to the world is and it i
 
 > Having Consumer Driven Contracts will prevent developers from making changes as the tests will break
 
-This is not entirely true. Using CDC will help developers by making them observant on breaking changes in their code. By using a CDC framework like Pact makes it abundantly clear who uses your service and how they are using it. If a change break a consumer this creates an excellent opportunity for developers to _talk_ with each other. Communication is the key to success and CDC help consumers and providers communicate.
-
+This is not entirely true. Using Consumer Driven Contracts will help developers by making them observant on breaking changes in their code. By using a CDC framework like Pact makes it abundantly clear who uses your service and how they are using it. If a change break a consumer this creates an excellent opportunity for developers to _talk_ with each other. Communication is the key to success and CDC help consumers and providers communicate.
 
 If and/or when a CDC test break developers from the provider should investigate if the breaking change is intended and notify the consumer about it. If the breaking change is intended both teams of developers will need to cooperate with each other to solve the issue. If the teams cannot agree on who should fix this issue, then both teams need to grow up. Symbiotic relationships require that both sides give what the other need. A CDC test should not prohibit further development of an application so a CDC should be considered a guideline for the provider to ensure service reliability. Unless there are other legal contracts involved then the provider should just go ahead and deploy the changes. Temporary API-versioning of the specific failing tests can also be considered in extreme cases.
+
+## Internal vs. external usage
+
+Consumer Driven Contracts will be able to solve a lot of different issues that may occur while developing microservices in a large organization, but it is not always clear when to use this testing pattern or who you should expose this testing paradigm to. 
+
+> Consumer Driven Contracts should definitely be used internally in a development team
+
+A development team should usually consist of 3-9 people and a can have resposibility for houndreds of different microservices within an organization. All development within a team should definitely use Consumer Driven Contracts when creating dependent services. Even though all members of the development team should know which services talk to each other but as the number of services grow the system gets more unclear. Using Consumer Driven Contracts will make it easier for developers to know which of their supported services are dependent on other services, and it will make it much easier for new team members to disover and understand all system dependencies.
+
+> Consumer Driven Contracts should almost definitely be used internally in an organization
+
+Organizations come in many different shapes and sizes. Because of that, there is no definite way to decide if an organization should use Consumer Driven Contracts or not. It 
+- Image that split internal use and external use based on requirement (internal) and guideline (external)
+
+- Should definitely be used internally in a team developing microservices
+- Should almost definitely be used internally in an organization
+- Can be used for external consumers if you know who they are
+- Should not be used for open APIs
+
 
 ## API versioning
 
@@ -168,6 +186,8 @@ git clone git@github.com:steam0/pact-provider.git
 
 
 # Notes for future development of this guide
+- Conways law and how communication is the key to success
+- Introduction discussing what the trouble with microservices is. Why is it hard to keep your speed up as an organization and system grow? How can you release with confidence.
 - Releasing new versions with confidence
 - Impossible to predict all corner cases of usages
 - > API versioning is a great theory that is awful to implement. When building microservices and doing multiple deploys per day developers may risk having to support multiple different API-versions. API versioning is great while having regular scheduled system upgrades.
@@ -178,3 +198,4 @@ git clone git@github.com:steam0/pact-provider.git
 - It is impossible to write perfect API documentation. (All contracts will be flawed)
 - CDC can decrease number of api versions by telling you when you break something
 - CDC as internal or external availability?
+- Show how pact can auto generate dependency graphs
