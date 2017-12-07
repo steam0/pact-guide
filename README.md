@@ -78,7 +78,7 @@ As discussed earlier will Consumer Driven Contracts solve this problem for you b
 Consumer Driven Contracts will give your developers the confidence to keep deploying new versions of their applications while knowing that they won't break functionality for any of their consumers.
 
 > organizations which design systems ... are constrained to produce designs which are copies of the communication structures of these organizations.
-> <div style="text-align: right">Melvin Conway</div>
+> ` - Melvin Conway`
 
 Conway's law is often quoted when developing computer systems and especially when developing systems using microservices. Organizations will always apply their communication structures into their systems as that is how they already talk to each other. If two different teams are supposed to provide interfaces to each other they often do so in the same way as they share other information. This can often lead to systems not communicating as well as they should. Consumer Driven Contracts will most definitely help teams, and therefore the organization, communicate better with each other since both parties will provide information. Providers present information about their APIs, and consumers present information about how they use said API. Communication is the key to success while developing systems just like in business.
 
