@@ -14,7 +14,7 @@ Unit testing refers to tests that verifies the internal functionality of a given
 
 These tests are relatively cheap to write and run as they do not require any external applications to be running. Unit tests will only be able to detect errors in internal logic.
 
-<div style="text-align:center">
+<div style="vertical-align:middle;">
 	<img src="https://github.com/steam0/pact-guide/blob/master/images/unit_test_graph.png?raw=true" width="60%">
 </div>
 
