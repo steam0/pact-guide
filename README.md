@@ -14,9 +14,9 @@ Unit testing refers to tests that verifies the internal functionality of a given
 
 These tests are relatively cheap to write and run as they do not require any external applications to be running. Unit tests will only be able to detect errors in internal logic.
 
-<img src="https://github.com/steam0/pact-guide/blob/master/images/unit_test_graph.png?raw=true" width="40%">
-![Unit test graph](https://github.com/steam0/pact-guide/blob/master/images/unit_test_graph.png?raw=true)
-- Bar graph containing three bars: cost to write, cost to run, confidence
+<div style="text-align:center">
+	<img src="https://github.com/steam0/pact-guide/blob/master/images/unit_test_graph.png?raw=true" width="60%">
+</div>
 
 ### Integration tests
 
@@ -24,8 +24,9 @@ Integrations testing referes to tests that verify integrations from one applicat
 
 Integration tests can also be created such that there is no external call and the test receives a mocked response that you can run your tests with. Using mocks, reduces the cost of integration tests, but it creates other problem that will be discussed later.
 
-![Integration test graph](https://github.com/steam0/pact-guide/blob/master/images/integration_test_graph.png?raw=true)
-- Bar graph containing three bars: cost to write, cost to run, confidence
+<div style="text-align:center">
+	<img src="https://github.com/steam0/pact-guide/blob/master/images/integration_test_graph.png?raw=true" width="60%">
+</div>
 
 ###  System tests
 
@@ -33,8 +34,9 @@ System testing refers to tests that verify that the system meets its requirement
 
 Writing and executing system tests are very costly to implement and run, and will often be neglected and completely ignored.
 
-![System test graph](https://github.com/steam0/pact-guide/blob/master/images/system_test_graph.png?raw=true)
-- Bar graph containing three bars: cost to write, cost to run, confidence
+<div style="text-align:center">
+	<img src="https://github.com/steam0/pact-guide/blob/master/images/system_test_graph.png?raw=true" width="60%">
+</div>
 
 ## Consumer Driven Contracts
 
