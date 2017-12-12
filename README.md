@@ -65,7 +65,7 @@ When a consumer have generated a pact file it should publish this to the provide
 
 A pact broker is a separate application which should be a part of any system implementing pacts. The pact broker will be waiting for pact files from any consumer and is indexing them based on which provider they are communicating with. When a pact is published to the broker it becomes available to any provider that want to validate them.
 
-- Illustration of Consumer, pact file , broker, and a provider accessing the pact file from the broker
+<img src="https://github.com/steam0/pact-guide/blob/master/images/CDC_contracts.png?raw=true" width="60%">
 
 ## Why you should apply Consumer Driven Contracts to your system
 
