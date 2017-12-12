@@ -52,12 +52,11 @@ An API is a contract. The provider guarantees that if you use the API as describ
 
 A consumer will usually write integration tests to confirm that the API works as described for the consumer service. However this does not provide any guidelines for the provider to make sure that they don't break the consumer integration while making changes to the API providers codebase.
 
-_Consumer Driven Contracts_ let consumers to write mock integration tests and create a _consumer contract_ that defines how the consumer is using the API. 
-
+_Consumer Driven Contracts_ let consumers to write mock integration tests and create a _consumer contract_ that defines how the consumer is using the API. These integration test are then given to the provider to run whenever they modify their code. Having this consumer-provider contract relationship creates confidence for the consumer that their services will keep working even when providers upgrade theirs.
 
 ## Pact
 
-Pact is a framework for implementing Consumer Driven Contracts in an applications. The consumer is able to write a contract to the provider by creating a _pact_. A pact is an integration test written by the consumer, that the provider can add to their test suite and run before building (or deploying) a new version of the application. A pact file will contain information about which endpoint is called, request data and what the response from calling this endpoint should be.
+Pact is a framework for implementing Consumer Driven Contracts in an application. The consumer is able to write a contract to the provider by creating a _pact_. A pact is an integration test written by the consumer, that the provider can add to their test suite and run before building (or deploying) a new version of the application. A pact file will contain information about which endpoint is called, request data, response data and whatever validation of the response data that the consumer chose to perform.
 
 ## Publishing pacts
 
