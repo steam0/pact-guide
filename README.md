@@ -8,6 +8,8 @@ This demo is a proof of concept of how it works and why we should implement _Con
 
 There are many different testing types. Different types of tests have different strengths and weaknesses. There is also a massive difference in the _cost_ of implementing different types of tests. This article will only mention the three types that are relevant when talking about Consumer Driven Contracts.
 
+<img src="https://github.com/steam0/pact-guide/blob/master/images/pyramid.png?raw=true" width="60%">
+
 ### Unit tests
 
 Unit testing refers to tests that verifies the internal functionality of a given application. These tests are used to validate that the functionality of a given class or method to make sure that internal functionality does not unintentionally change.
@@ -34,11 +36,9 @@ Writing and executing system tests are very costly to implement and run, and wil
 
 ## Consumer Driven Contracts
 
-<img src="https://github.com/steam0/pact-guide/blob/master/images/pyramid.png?raw=true" width="60%">
-
 The only types of tests that are low cost to write and run are _unit tests_ and _mocked integration tests_. Developers often forget or avoid implementing good integration or system tests because of the cost which then removes the confidence these tests provide. There is also an issue with using mocked integration tests as a cost effective option. If and when a service changes its interface, the mocked integration test on the consumer side will fail to detect these changes and the consumer application will crash even while having green builds. Consumer Driven Contracts provides a solution to this exact problem.
 
-Consumer Driven Contracts is a testing paradigm which let consumers of a service define a contract that the service can validate against. These tests are an alternative to the traditional (mocked)integration test, but are executed on both the consumer and the service provider application.
+Consumer Driven Contracts is a testing paradigm which let consumers of a service define a contract that the service can validate against. These tests are an alternative to the traditional (mocked) integration test, but are executed on both the consumer and the service provider application.
 
 <img src="https://github.com/steam0/pact-guide/blob/master/images/pyramid_cdc.png?raw=true" width="60%">
 
@@ -206,5 +206,4 @@ git clone git@github.com:steam0/pact-provider.git
 - Good and bad examples of cdc-tests https://docs.pact.io/best_practices/contract_tests_not_functional_tests.html
 - It is impossible to write perfect API documentation. (All contracts will be flawed)
 - CDC can decrease number of api versions by telling you when you break something
-- CDC as internal or external availability?
 - Show how pact can auto generate dependency graphs
