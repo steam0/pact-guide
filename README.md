@@ -72,13 +72,14 @@ A pact broker is a separate application which should be a part of any system imp
 
 When developing applications, and specifically applications in a microservice architechture, tests are written to ensure system stability and to provide a solid foundation for future development. In a microservice architecture it is not always clear which applications are using your service. When accepting this premise it becomes clear that having unit tests and integration tests would be useless for the provider of an API. If you don't know who your consumers are you will not be able to predict how your API is being used and even if you do know who your consumers are you still won't successfully predict how they use your API.
 
-As discussed earlier will Consumer Driven Contracts solve this problem for you by providing a design pattern for consumers to apply to their tests. Since all applications *_should_* have both unit tests and mocked integration tests there is no significant code change needed on the consumer side to create a contract for the provider to validate.
+Consumer Driven Contracts will as discussed earlier provide a solution to this problem by providing a design pattern for consumers to apply while writing tests. Since all applications *should* have both unit tests and mocked integration tests there is no significant code change needed on the consumer side to create a contract for the provider to validate.
 
-Consumer Driven Contracts will give your developers the confidence to keep deploying new versions of their applications while knowing that they won't break functionality for any of their consumers.
+Consumer Driven Contracts will give your developers the confidence to keep deploying new versions of their applications while knowing that they will not break functionality for any consumers.
 
 > organizations which design systems ... are constrained to produce designs which are copies of the communication structures of these organizations.
 > -- Melvin Conway
 
+ - Rewrite all of this: 
 Conway's law is often quoted when developing computer systems and especially when developing systems using microservices. Organizations will always apply their communication structures into their systems as that is how they already talk to each other. If two different teams are supposed to provide interfaces to each other they often do so in the same way as they share other information. This can often lead to systems not communicating as well as they should. Consumer Driven Contracts will most definitely help teams, and therefore the organization, communicate better with each other since both parties will provide information. Providers present information about their APIs, and consumers present information about how they use said API. Communication is the key to success while developing systems just like in business.
 
 
