@@ -115,7 +115,7 @@ Some services will have external consumers that are known to the provider. In th
 
 Any organization provides open APIs should not let unknown consumers provide contracts to the providing API due to the unneccesary dependencies that will be created. In the case where open APIs let all their consumers provide contracts they should always use it as a guideline. For open APIs this data will often not be useful due to the lack of implementation on the consumer side. It will not help a development team if only one consumer out of a houndred chose to provide a contract.
 
-<img src="https://github.com/steam0/pact-guide/blob/master/images/cdc_usage.png?raw=true" width="60%">
+<img src="https://github.com/steam0/pact-guide/blob/master/images/cdc_usage.png?raw=true" width="80%">
 
 ## API versioning
 
