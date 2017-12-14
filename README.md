@@ -1,9 +1,8 @@
 # Consumer Driven Contracts implemented using Pacts
 
-```
-This demo is a proof of concept of how it works and why we should implement _Consumer Driven Contracts_ (CDC) when developing microservices. In this demo CDC is implemented using the Pact framework.
+>This demo is a proof of concept of how it works and why we should implement _Consumer Driven Contracts_ (CDC) when developing microservices. In this demo CDC is implemented using the Pact framework.
+
 Demo: [Pact Demo Installation and Testing Guide](#pact-demo-installation-and-testing-guide)
-```
 
 In the world of microservices change can often result in broken dependencies. Even though microservices are easy to build and run they can often become a messy pile of dependencies that slow down development. Being able to confidently build and deploy new versions is key to increase speed and reduce the cost of development. Organizations that are transitioning from a traditional monolithic design both can and will realize that it is hard to keep track of all dependencies in a complicated system. Microservice architechture can vary from only 4-5 service to more than a thousend service that compose a complete system. Consumer Driven Contracts is a testing paradigm that let API-consumers tell the API-providers how they are using their services. This article will discuss software testing, how Consumer Driven Contracts can make developers more confident, how and when to use Consumer Driven Contracts and how to benefit from combining Consumer Driven Contracts and API-versioning.
 
