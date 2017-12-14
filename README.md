@@ -36,13 +36,16 @@ Writing and executing system tests are very costly to implement and run, and wil
 
 ## Consumer Driven Contracts
 
-<img src="https://github.com/steam0/pact-guide/blob/master/images/pyramid_cdc.png?raw=true" width="60%">
+<img src="https://github.com/steam0/pact-guide/blob/master/images/cdc_consumer.png?raw=true" width="40%">
+<img src="https://github.com/steam0/pact-guide/blob/master/images/cdc_provider.png?raw=true" width="40%">
 
 When an application is consuming an external service, the application becomes a _consumer_ of that service. The external service is now a _provider_ of services to this consumer. The consumer is calling different endpoints on the external service and is writing integration tests based on the response. 
 
 The only types of tests that are low cost to write and run are _unit tests_ and _mocked integration tests_. Developers often forget or avoid implementing good integration or system tests because of the cost which then removes the confidence these tests provide. There is also an issue with using mocked integration tests as a cost effective option. If and when a service changes its interface, the mocked integration test on the consumer side will fail to detect these changes and the consumer application will crash even while having green builds. Consumer Driven Contracts provides a solution to this exact problem.
 
 Consumer Driven Contracts is a testing paradigm which let consumers of a service define a contract that the service can validate against. These tests are an alternative to the traditional (mocked) integration test, but are executed on both the consumer and the service provider application.
+
+<img src="https://github.com/steam0/pact-guide/blob/master/images/pyramid_cdc.png?raw=true" width="60%">
 
 ## APIs are contracts
 
@@ -64,7 +67,7 @@ When a consumer have generated a pact file it should publish this to the provide
 
 A pact broker is a separate application which should be a part of any system implementing pacts. The pact broker will be waiting for pact files from any consumer and is indexing them based on which provider they are communicating with. When a pact is published to the broker it becomes available to any provider that want to validate them.
 
-<img src="https://github.com/steam0/pact-guide/blob/master/images/CDC_contracts.png?raw=true" width="60%">
+<img src="https://github.com/steam0/pact-guide/blob/master/images/cdc_contracts.png?raw=true" width="60%">
 
 ## Why you should apply Consumer Driven Contracts to your system
 
