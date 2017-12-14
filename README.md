@@ -1,6 +1,6 @@
 # Consumer Driven Contracts implemented using Pacts
 
-[Pact Demo Installation and Testing Guide](#pact-demo-installation-and-testing-guide)
+Note: For demo see [Pact Demo Installation and Testing Guide](#pact-demo-installation-and-testing-guide)
 
 >This demo is a proof of concept of how it works and why we should implement Consumer Driven Contracts (CDC) when developing microservices. In this demo CDC is implemented using the Pact framework.
 
