@@ -6,7 +6,7 @@ This demo is a proof of concept of how it works and why we should implement _Con
 
 ## Tests
 
-There are many different testing types. Different types of tests have different strengths and weaknesses. There is also a massive difference in the _cost_ of implementing different types of tests. This article will only mention the three types that are relevant when talking about Consumer Driven Contracts.
+Testing code is an important part of software development. Testing code gives the developer confidence that the application works as intended but both writing and running tests is time consuming, also known as  the _cost_. Different types of tests have different strengths and weaknesses and there is a massive difference in the cost of these different types of tests. This article will give a brief introduction to three common types of tests and compare them to writing Consumer Driven Contracts.
 
 <img src="https://github.com/steam0/pact-guide/blob/master/images/pyramid.png?raw=true" width="60%">
 
@@ -36,7 +36,7 @@ Writing and executing system tests are very costly to implement and run, and wil
 
 ## Consumer Driven Contracts
 
-<img src="https://github.com/steam0/pact-guide/blob/master/images/cdc_steps_1.png?raw=true" width="40%">
+<img src="https://github.com/steam0/pact-guide/blob/master/images/cdc_steps_1.png?raw=true" width="80%">
 
 When an application is consuming an external service, the application becomes a _consumer_ of that service. The external service is now a _provider_ of services to this consumer. The consumer is calling different endpoints on the external service and is writing integration tests based on the response. 
 
