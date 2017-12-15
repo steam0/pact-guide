@@ -50,9 +50,9 @@ Consumer Driven Contracts is a testing paradigm which let consumers of a service
 
 > As an API is a contract from the provider to any consumer describing how to use services from the provider, a pact is a contract from a given consumer to the provider describing how the consumer uses services from the provider.
 
-An API is a contract. The provider guarantees that if you use the API as described, they will provide responses according to the API-specification. [_The OpenAPI Specification_](https://github.com/OAI/OpenAPI-Specification) is a framework for an API provider to expose APIs as a contract using json or yaml. 
+An API is a contract. The provider guarantees that if you use the API as described, they will provide responses according to the API-specification. [_The OpenAPI Specification_](https://github.com/OAI/OpenAPI-Specification) is a framework for an API provider to expose APIs as a contract using json or yaml. Even though such frameworks help developers share information about request data and response data, it does not explain the intended usage of an endpoint and it is up to the developer to write what the endpoint really do. This allows for consumers to misunderstand the intended usage. 
 
-A consumer will usually write integration tests to confirm that the API works as described for the consumer service. However this does not provide any guidelines for the provider to make sure that they don't break the consumer integration while making changes to the API providers codebase.
+A consumer will usually write integration tests to confirm that they have interpreted the API contract correctly. These integration tests will describe how the consumer use the provided API and may show which assumptions the consumer made about the API. However this does not provide any guidelines for the provider to make sure that they don't break the consumer integration while making changes to the provider application.
 
 _Consumer Driven Contracts_ let consumers to write mock integration tests and create a _consumer contract_ that defines how the consumer is using the API. These integration test are then given to the provider to run whenever they modify their code. Having this consumer-provider contract relationship creates confidence for the consumer that their services will keep working even when providers upgrade theirs.
 
@@ -81,7 +81,7 @@ Consumer Driven Contracts will give your developers the confidence to keep deplo
 > organizations which design systems ... are constrained to produce designs which are copies of the communication structures of these organizations.
 > -- Melvin Conway
 
-This famous quote from Melvin Conway is often used to explain why computer systems end up like they do. The qoute gets even more useful when trying to explain systems using microservice architechture since dependencies are not as obvious as they are in a monolith. Much like internal departments in an oragnization, microservices have seperate responsibilities and concerns. When different departments or teams develop services they will often model their APIs the same way as they communicate with other departments. Implementing Consumer Driven Contracts to a computer system will generate a perfect platform for developers, teams and departments to communicate better with each other. Both parties will provide contracts to each other which will make the consumer discover information about how to use an API and the provider will discover how the consumer uses their API and which assumptions the consumer made. It is as true in software development as it is in business: Communication is the key to success.
+This famous quote from Melvin Conway is often used to explain why computer systems end up like they do. The qoute gets even more useful when trying to explain systems using microservice architechture since dependencies are not as obvious as they are in a monolith. Much like internal departments in an oragnization, microservices have seperate responsibilities and concerns. When different departments or teams develop services they will often model their APIs the same way as they communicate with other departments. Implementing Consumer Driven Contracts to a computer system will generate a perfect platform for developers, teams and departments to communicate better. Both parties will provide contracts to each other which will make the consumer discover information about how to use an API and the provider will discover how the consumer uses their API and which assumptions the consumer made. It is as true in software development as it is in business: Communication is the key to success.
 
 
 ## Objections to Consumer Driven Contracts
@@ -94,7 +94,7 @@ It is the API provider that decides what their contract to the world is and it i
 
 This is not entirely true. Using Consumer Driven Contracts will help developers by making them observant on breaking changes in their code. By using a CDC framework like Pact makes it abundantly clear who uses your service and how they are using it. If a change break a consumer this creates an excellent opportunity for developers to _talk_ with each other. Communication is the key to success and CDC help consumers and providers communicate.
 
-If and/or when a CDC test break developers from the provider should investigate if the breaking change is intended and notify the consumer about it. If the breaking change is intended both teams of developers will need to cooperate with each other to solve the issue. If the teams cannot agree on who should fix this issue, then both teams need to grow up. Symbiotic relationships require that both sides give what the other need. A CDC test should not prohibit further development of an application so a CDC should be considered a guideline for the provider to ensure service reliability. Unless there are other legal contracts involved then the provider should just go ahead and deploy the changes. Temporary API-versioning of the specific failing tests can also be considered in extreme cases.
+If and/or when a Consumer Driven Contracts test break, developers from the provider should investigate if the breaking change is intended and notify the consumer about it. If the breaking change is intended both teams of developers will need to cooperate with each other to solve the issue. If the teams cannot agree on who should fix this issue, then both teams need to grow up. Symbiotic relationships require that both sides give what the other need. A consumer contract test should not prohibit further development of an application. A consumer contract should be considered a guideline for the provider to ensure service reliability. Unless there are other legal contracts involved then the provider should just go ahead and deploy the changes. Temporary API-versioning of the specific failing tests can also be considered in extreme cases.
 
 ## Internal vs. external usage
 
@@ -118,6 +118,8 @@ Any organization provides open APIs should not let unknown consumers provide con
 
 <img src="https://github.com/steam0/pact-guide/blob/master/images/cdc_usage.png?raw=true" width="100%">
 
+There is a big difference between internal consumers and external consumers when considering how strictly a provider should comply with the test results. When Consumer Driven Contracts tests from an internal consumer fails it should be considered as breach of a binding contract. When contracts from an external consumer fails it should only be considered as information discovery. Report what APIs break and why. A guideline is purely there to discover faults, not to prohibit development.
+
 ## API versioning
 
 API versioning is an important tool to use in order to make microservices truly decoupled from each other. There are many different ways of implementing API versioning, but that will not be discussed here. API versioning frees an application API from all its existing contracts by defining a new version of that contract. By doing so a developer will then have to support and maintain `n+1` versions of it's API. This makes API versioning a tool that should be used carefully.
@@ -129,6 +131,13 @@ API versioning is not by itself how to solve decoupled releases of microservices
 > API versioning does not answer the question: When do I need to create a new API version? 
 
 Even though API versioning makes it possible to support consumers depending on older versions of an API, it does not provide the desired confidence while maintaining the API. While correcting a mistake in an older API version the change might break the consumers of that API version. This is where using Consumer Driven Contracts will make developers more confident when making changes to the code. Developers will be able to maintain older versions of an API with confidence by validating all consumers of that specific API version.
+
+## Summary
+
+* Different testing paradigms.
+* WHy CDC matter
+* Confidence
+* Combining CDC and API-versioning
 
 # Pact Demo Installation and Testing Guide
 
@@ -196,11 +205,8 @@ git clone git@github.com:steam0/pact-provider.git
 
 
 # Notes for future development of this guide
-- Conways law and how communication is the key to success
 - Introduction discussing what the trouble with microservices is. Why is it hard to keep your speed up as an organization and system grow? How can you release with confidence.
 - Releasing new versions with confidence
-- Impossible to predict all corner cases of usages
-- > API versioning is a great theory that is awful to implement. When building microservices and doing multiple deploys per day developers may risk having to support multiple different API-versions. API versioning is great while having regular scheduled system upgrades.
 - Discuss negative sides. Why wont this work? 
 - CDC For internal use only? Why/Why not external use? (A tool for external consumers to inform about usage/ An external CDC is not a binding contract but a guideline/information pipeline to the provider)
 - My test doesnt work, whos problem is it?
