@@ -43,7 +43,7 @@ This is an image of a simplified microservice. A Microservices have responsibili
 
 ## Consumer Driven Contracts
 
-<img src="https://github.com/steam0/pact-guide/blob/master/images/microservices.png?raw=true" width="50%">
+<img src="https://github.com/steam0/pact-guide/blob/master/images/microservices.png?raw=true" width="70%">
 
 When an application is consuming an external service, the application becomes a _consumer_ of that service. The external service is now a _provider_ of services to this consumer. The consumer is calling different endpoints on the external service and is writing integration tests based on the response. 
 
