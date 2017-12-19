@@ -143,7 +143,19 @@ API versioning is not by itself how to solve decoupled releases of microservices
 
 Even though API versioning makes it possible to support consumers depending on older versions of an API, it does not provide the desired confidence while maintaining the API. While correcting a mistake in an older API version the change might break the consumers of that API version. This is where using Consumer Driven Contracts will make developers more confident when making changes to the code. Developers will be able to maintain older versions of an API with confidence by validating all consumers of that specific API version.
 
-## Consumer Driven Contracts builds relationship graphs
+## Consumer Driven API Design
+
+Consumer Driven Contracts can also be used to drive API design. When a service suddenly need a new API from a provider service occasional misunderstandings will occur. By letting the consumer asking for the new API write consumer contracts before starting developing the new endpoint makes it much easier for developers of the providing service to know what the consuming service needs and expects.
+
+## Pact-dashboard
+
+The Pact broker provides a simple web application that will show information about all pacts registered. The broker will display who the consumer is, which provider the pact is for and whether or not the pact has been verified by the provider application.
+
+<img src="https://github.com/steam0/pact-guide/blob/master/images/pact-example.png?raw=true" width="70%">
+
+The dashboard provided by the pact broker can also display dependency graphs based on all pacts. This will be very helpfull since it gives an automatically updated view of all dependencies and that will be usefull while updating existing services or developing new services.
+
+<img src="https://github.com/steam0/pact-guide/blob/master/images/simple-dependency-graph.png?raw=true" width="70%">
 
 ## Summary
 
