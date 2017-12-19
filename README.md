@@ -4,15 +4,19 @@ Note: For demo see [Pact Demo Installation and Testing Guide](#pact-demo-install
 
 In the world of microservices change can often result in broken dependencies. Even though microservices are easy to build and run they can often become a messy pile of dependencies that slow down development. Being able to confidently build and deploy new versions is key to increase speed and reduce the cost of development. Organizations that are transitioning from a traditional monolithic design both can and will realize that it is hard to keep track of all dependencies in a complicated system. Microservice architechture can vary from only a few services to more than a thousand services that compose a complete system. Consumer Driven Contracts is a testing paradigm that let API-consumers tell the API-providers how they are using their services. This article will discuss software testing, how Consumer Driven Contracts can make developers more confident, how and when to use Consumer Driven Contracts and how to benefit from combining Consumer Driven Contracts and API-versioning.
 
+## Anatomy of a microservice
+
+- Display a microservice, explain what it is, which components it contains and how/why we should test all components.
+
 ## Tests
 
 Testing code is an important part of software development. Testing code gives the developer confidence that the application works as intended but both writing and running tests is time consuming. Different types of tests have different strengths and weaknesses and there is a massive difference in the _cost_ (time spent writing and running tests) of these different types of tests. This article will give a brief introduction to three common types of tests and compare them to writing Consumer Driven Contracts.
 
-<img src="https://github.com/steam0/pact-guide/blob/master/images/pyramid.png?raw=true" width="60%">
+<img src="https://github.com/steam0/pact-guide/blob/master/images/testing_pyramid.png?raw=true" width="60%">
 
 ### Unit tests
 
-Unit testing refers to tests that verifies the internal functionality of a given application. These tests are used to validate that the functionality of a given class or method to make sure that internal functionality does not unintentionally change.
+Unit testing refers to tests that verifies the internal functionality of a given application. These tests are used to validate the functionality of a given class or method and to make sure that internal functionality does not unintentionally change.
 
 These tests are relatively cheap to write and run as they do not require any external applications to be running. Unit tests will only be able to detect errors in internal logic.
 
@@ -20,15 +24,15 @@ These tests are relatively cheap to write and run as they do not require any ext
 
 ### Integration tests
 
-Integrations testing referes to tests that verify integrations from one application to another. These are typically used by calling endpoint provided by an external application and verifying the response. Such tests are less cheap than unit tests since you rely on an external service. Integration tests will require that all external services are online for the tests to pass. This is often not the case and integration tests will often be ignored.
+Integration testing referes to tests that verify integrations from one application to another. These are typically used by calling endpoints provided by an external application and verifying the response. Such tests are less cheap than unit tests since you rely on an external service. Integration tests will require that all external services are online for the tests to pass. This is often not the case and integration tests will often be ignored.
 
-Integration tests can also be created such that there is no external call and the test receives a mocked response that you can run your tests with. Using mocks, reduces the cost of integration tests, but it creates other problem that will be discussed later.
+Integration tests can also be created such that there is no external call and the test receives a mocked response that you can run your tests with. Using mocks reduces the cost of running integration tests, but it also removes some of the confidence that integration test is supposed to give.
 
 <img src="https://github.com/steam0/pact-guide/blob/master/images/integration_test_graph.png?raw=true" width="60%">
 
-###  System tests
+###  End-to-end tests
 
-System testing refers to tests that verify that the system meets its requirement. These tests will be executed on a system of running applications and verify that actions get executed properly and that responses are valid.
+End-to-end testing refers to tests that verify that the system as a whole meets its requirement. These tests will be executed on a system of running applications and verify that actions get executed properly and that responses are valid.
 
 Writing and executing system tests are very costly to implement and run, and will often be neglected and completely ignored.
 
@@ -44,7 +48,7 @@ The only types of tests that are low cost to write and run are _unit tests_ and 
 
 Consumer Driven Contracts is a testing paradigm which let consumers of a service define a contract that the service can validate against. These tests are an alternative to the traditional (mocked) integration test, but are executed on both the consumer and the service provider application.
 
-<img src="https://github.com/steam0/pact-guide/blob/master/images/pyramid_cdc.png?raw=true" width="60%">
+<img src="https://github.com/steam0/pact-guide/blob/master/images/testing_pyramid_cdc.png.png?raw=true" width="60%">
 
 ## APIs are contracts
 
