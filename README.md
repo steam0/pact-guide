@@ -10,6 +10,9 @@ In the world of microservices change can often result in broken dependencies. Ev
 
 <img src="https://github.com/steam0/pact-guide/blob/master/images/microservice.png?raw=true" width="60%">
 
+This is an image of a simplified microservice. A Microservices have responsibility that is limited by a logical boundary, often called the _bounded context_. Each microservice have this single responsibility principle and systems are made by comibining together multiple microservices. Each part of the microservice should be tested by using different testing strategies. 
+
+
 ## Tests
 
 Testing code is an important part of software development. Testing code gives the developer confidence that the application works as intended but both writing and running tests is time consuming. Different types of tests have different strengths and weaknesses and there is a massive difference in the _cost_ (time spent writing and running tests) of these different types of tests. This article will give a brief introduction to three common types of tests and compare them to writing Consumer Driven Contracts.
