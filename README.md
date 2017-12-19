@@ -139,7 +139,7 @@ API versioning is an important tool to use in order to make microservices truly 
 
 API versioning is not by itself how to solve decoupled releases of microservices. Not because it is impossible to implement, but because it ultimately will result in having way more code to maintain which again inhibits development speed. Having multiple versions of an API makes the codebase unneccesarily large and makes it more likely to contain errors.
 
-> API versioning does not answer the question: When do I need to create a new API version? 
+> When do I need to create a new API version? 
 
 Even though API versioning makes it possible to support consumers depending on older versions of an API, it does not provide the desired confidence while maintaining the API. While correcting a mistake in an older API version the change might break the consumers of that API version. This is where using Consumer Driven Contracts will make developers more confident when making changes to the code. Developers will be able to maintain older versions of an API with confidence by validating all consumers of that specific API version.
 
