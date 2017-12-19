@@ -4,14 +4,6 @@ Note: For demo see [Pact Demo Installation and Testing Guide](#pact-demo-install
 
 In the world of microservices change can often result in broken dependencies. Even though microservices are easy to build and run they can often become a messy pile of dependencies that slow down development. Being able to confidently build and deploy new versions is key to increase speed and reduce the cost of development. Organizations that are transitioning from a traditional monolithic design both can and will realize that it is hard to keep track of all dependencies in a complicated system. Microservice architechture can vary from only a few services to more than a thousand services that compose a complete system. Consumer Driven Contracts is a testing paradigm that let API-consumers tell the API-providers how they are using their services. This article will discuss software testing, how Consumer Driven Contracts can make developers more confident, how and when to use Consumer Driven Contracts and how to benefit from combining Consumer Driven Contracts and API-versioning.
 
-## Anatomy of a microservice
-
-- Display a microservice, explain what it is, which components it contains and how/why we should test all components.
-
-<img src="https://github.com/steam0/pact-guide/blob/master/images/microservice.png?raw=true" width="60%">
-
-This is an image of a simplified microservice. A Microservices have responsibility that is limited by a logical boundary, often called the _bounded context_. Each microservice have this single responsibility principle and systems are made by comibining together multiple microservices. Each part of the microservice should be tested by using different testing strategies. 
-
 
 ## Tests
 
@@ -42,6 +34,14 @@ End-to-end testing refers to tests that verify that the system as a whole meets 
 Writing and executing system tests are very costly to implement and run, and will often be neglected and completely ignored.
 
 <img src="https://github.com/steam0/pact-guide/blob/master/images/system_test_graph.png?raw=true" width="60%">
+
+## Anatomy of a microservice
+
+- Display a microservice, explain what it is, which components it contains and how/why we should test all components.
+
+<img src="https://github.com/steam0/pact-guide/blob/master/images/microservice.png?raw=true" width="60%">
+
+This is an image of a simplified microservice. A Microservices have responsibility that is limited by a logical boundary, often called the _bounded context_. Each microservice have this single responsibility principle and systems are made by comibining together multiple microservices. Each part of the microservice should be tested by using different testing strategies. Interface and domain is usually tested by creating unit tests, while persistence and integrations are tested by using integration tests. This is a very simplified explanation and reading further into this subject will uncover many exceptions from this simplification. End-to-end testing is used to test multiple service together and manual testing will be used when needed to test very specific parts of a system.
 
 ## Consumer Driven Contracts
 
