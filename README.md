@@ -48,7 +48,7 @@ The only types of tests that are low cost to write and run are _unit tests_ and 
 
 Consumer Driven Contracts is a testing paradigm which let consumers of a service define a contract that the service can validate against. These tests are an alternative to the traditional (mocked) integration test, but are executed on both the consumer and the service provider application.
 
-<img src="https://github.com/steam0/pact-guide/blob/master/images/testing_pyramid_cdc.png.png?raw=true" width="60%">
+<img src="https://github.com/steam0/pact-guide/blob/master/images/testing_pyramid_cdc.png?raw=true" width="60%">
 
 ## APIs are contracts
 
