@@ -37,8 +37,6 @@ Writing and executing system tests are very costly to implement and run, and wil
 
 ## Anatomy of a microservice
 
-- Display a microservice, explain what it is, which components it contains and how/why we should test all components.
-
 <img src="https://github.com/steam0/pact-guide/blob/master/images/microservice.png?raw=true" width="60%">
 
 This is an image of a simplified microservice. A Microservices have responsibility that is limited by a logical boundary, often called the _bounded context_. Each microservice have this single responsibility principle and systems are made by comibining together multiple microservices. Each part of the microservice should be tested by using different testing strategies. Interface and domain is usually tested by creating unit tests, while persistence and integrations are tested by using integration tests. This is a very simplified explanation and reading further into this subject will uncover many exceptions from this simplification. End-to-end testing is used to test multiple service together and manual testing will be used when needed to test very specific parts of a system.
@@ -223,3 +221,4 @@ git clone git@github.com:steam0/pact-provider.git
 - It is impossible to write perfect API documentation. (All contracts will be flawed)
 - CDC can decrease number of api versions by telling you when you break something
 - Show how pact can auto generate dependency graphs
+- Display a microservice, explain what it is, which components it contains and how/why we should test all components.
