@@ -63,6 +63,10 @@ A consumer will usually write integration tests to confirm that they have interp
 
 _Consumer Driven Contracts_ let consumers to write mock integration tests and create a _consumer contract_ that defines how the consumer is using the API. These integration test are then given to the provider to run whenever they modify their code. Having this consumer-provider contract relationship creates confidence for the consumer that their services will keep working even when providers upgrade theirs.
 
+> The sum of all consumer contract tests defines the overall service contract
+
+When consumers couples to an external interface they form a contract between each other. By using Consumer Driven Contracts the consumer will create a contract and exposes this contract to the provider. While more and more services couples to the external service then they will together create a set of contracts that combined defines the overall service contract. Using frameworks for sharing consumer contracts let providers access these contracts and verify that consumers won't be impacted while making changes to the provider service.
+
 ## Pact
 
 Pact is a framework for implementing Consumer Driven Contracts in an application. The consumer is able to write a contract to the provider by creating a _pact_. A pact is an integration test written by the consumer, that the provider can add to their test suite and run before building (or deploying) a new version of the application. A pact file will contain information about which endpoint is called, request data, response data and whatever validation of the response data that the consumer chose to perform.
@@ -138,6 +142,8 @@ API versioning is not by itself how to solve decoupled releases of microservices
 > API versioning does not answer the question: When do I need to create a new API version? 
 
 Even though API versioning makes it possible to support consumers depending on older versions of an API, it does not provide the desired confidence while maintaining the API. While correcting a mistake in an older API version the change might break the consumers of that API version. This is where using Consumer Driven Contracts will make developers more confident when making changes to the code. Developers will be able to maintain older versions of an API with confidence by validating all consumers of that specific API version.
+
+## Consumer Driven Contracts builds relationship graphs
 
 ## Summary
 
