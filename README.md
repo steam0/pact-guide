@@ -4,7 +4,6 @@ Note: For demo see [Pact Demo Installation and Testing Guide](#pact-demo-install
 
 In the world of microservices change can often result in broken dependencies. Even though microservices are easy to build and run they can often become a messy pile of dependencies that slow down development. Being able to confidently build and deploy new versions is key to increase speed and reduce the cost of development. Organizations that are transitioning from a traditional monolithic design both can and will realize that it is hard to keep track of all dependencies in a complicated system. Microservice architechture can vary from only a few services to more than a thousand services that compose a complete system. Consumer Driven Contracts is a testing paradigm that let API-consumers tell the API-providers how they are using their services. This article will discuss software testing, how Consumer Driven Contracts can make developers more confident, how and when to use Consumer Driven Contracts and how to benefit from combining Consumer Driven Contracts and API-versioning.
 
-
 ## Tests
 
 Testing code is an important part of software development. Testing code gives the developer confidence that the application works as intended but both writing and running tests is time consuming. Different types of tests have different strengths and weaknesses and there is a massive difference in the _cost_ (time spent writing and running tests) of these different types of tests. This article will give a brief introduction to three common types of tests and compare them to writing Consumer Driven Contracts.
@@ -57,7 +56,7 @@ Consumer Driven Contracts is a testing paradigm which let consumers of a service
 
 > As an API is a contract from the provider to any consumer describing how to use services from the provider, a pact is a contract from a given consumer to the provider describing how the consumer uses services from the provider.
 
-An API is a contract. The provider guarantees that if you use the API as described, they will provide responses according to the API-specification. [_The OpenAPI Specification_](https://github.com/OAI/OpenAPI-Specification) is a framework for an API provider to expose APIs as a contract using json or yaml. Even though such frameworks help developers share information about request data and response data, it does not explain the intended usage of an endpoint and it is up to the developer to write what the endpoint really do. This allows for consumers to misunderstand the intended usage. 
+An API is a contract. The provider guarantees that if you use the API as described, they will provide responses according to the API-specification. [_The OpenAPI Specification_](https://github.com/OAI/OpenAPI-Specification) is a framework for an API provider to expose APIs as a contract using json or yaml. Even though such frameworks help developers share information about request data and response data, it does not explain the intended usage of an endpoint and it is up to developers to document what the endpoint really do. This allows for consumers to misunderstand the intended usage. 
 
 A consumer will usually write integration tests to confirm that they have interpreted the API contract correctly. These integration tests will describe how the consumer use the provided API and may show which assumptions the consumer made about the API. However this does not provide any guidelines for the provider to make sure that they don't break the consumer integration while making changes to the provider application.
 
@@ -69,7 +68,7 @@ When consumers couples to an external interface they form a contract between eac
 
 ## Pact
 
-Pact is a framework for implementing Consumer Driven Contracts in an application. The consumer is able to write a contract to the provider by creating a _pact_. A pact is an integration test written by the consumer, that the provider can add to their test suite and run before building (or deploying) a new version of the application. A pact file will contain information about which endpoint is called, request data, response data and whatever validation of the response data that the consumer chose to perform.
+Pact is a framework for implementing Consumer Driven Contracts in an application. The consumer is able to write a consumer contract to the provider by creating a _pact_. A pact is an integration test written by the consumer, that the provider can add to their test suite and run before building (or deploying) a new version of the application. A pact file will contain information about which endpoint is called, request data, response data and whatever validation of the response data that the consumer chose to perform.
 
 ## Publishing pacts
 
@@ -77,7 +76,7 @@ When a consumer have generated a pact file it should publish this to the provide
 
 A pact broker is a separate application which should be a part of any system implementing pacts. The pact broker will be waiting for pact files from any consumer and is indexing them based on which provider they are communicating with. When a pact is published to the broker it becomes available to any provider that want to validate them.
 
-<img src="https://github.com/steam0/pact-guide/blob/master/images/cdc_contracts.png?raw=true" width="60%">
+<img src="https://github.com/steam0/pact-guide/blob/master/images/cdc_publishing_contracts.png?raw=true" width="60%">
 
 ## Why you should apply Consumer Driven Contracts to your system
 
@@ -145,7 +144,7 @@ Even though API versioning makes it possible to support consumers depending on o
 
 ## Consumer Driven API Design
 
-Consumer Driven Contracts can also be used to drive API design. When a service suddenly need a new API from a provider service occasional misunderstandings will occur. By letting the consumer asking for the new API write consumer contracts before starting developing the new endpoint makes it much easier for developers of the providing service to know what the consuming service needs and expects.
+Consumer Driven Contracts can also be used to drive API design. When a service requests a new API from a provider misunderstandings will occur. By letting the consumer asking for the new API write consumer contracts before starting developing the new endpoint makes it much easier for developers of the providing service to know what the consuming service needs and expects.
 
 ## Pact-dashboard
 
@@ -159,6 +158,7 @@ The dashboard provided by the pact broker can also display dependency graphs bas
 
 ## Summary
 
+The original problem
 * Different testing paradigms.
 * WHy CDC matter
 * Confidence
