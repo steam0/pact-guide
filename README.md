@@ -2,6 +2,8 @@
 
 Note: For demo see [Pact Demo Installation and Testing Guide](#pact-demo-installation-and-testing-guide)
 
+<img src="https://github.com/steam0/pact-guide/blob/master/images/cdc_broker_provider_consumer.png?raw=true" width="60%">
+
 In the world of microservices change can often result in broken dependencies. Even though microservices are easy to build and run they can often become a messy pile of dependencies that slow down development. Being able to confidently build and deploy new versions is key to increase speed and reduce the cost of development. Organizations that are transitioning from a traditional monolithic design both can and will realize that it is hard to keep track of all dependencies in a complicated system. Microservice architechture can vary from only a few services to more than a thousand services that compose a complete system. Consumer Driven Contracts is a testing paradigm that let API-consumers tell the API-providers how they are using their services. This article will discuss software testing, how Consumer Driven Contracts can make developers more confident, how and when to use Consumer Driven Contracts and how to benefit from combining Consumer Driven Contracts and API-versioning.
 
 ## Tests
@@ -72,7 +74,7 @@ Pact is a framework for implementing Consumer Driven Contracts in an application
 
 ## Publishing pacts
 
-When a consumer have generated a pact file it should publish this to the providers. This can be done by attaching the file as a part of the repository (do not do this), by exposing the file at a url (should not do this) or by publishing it to a shared _broker_. 
+When a consumer has generated a pact file it should publish this to the providers. This can be done by attaching the file as a part of the repository (do not do this), by exposing the file at a url (should not do this) or by publishing it to a shared _broker_. 
 
 A pact broker is a separate application which should be a part of any system implementing pacts. The pact broker will be waiting for pact files from any consumer and is indexing them based on which provider they are communicating with. When a pact is published to the broker it becomes available to any provider that want to validate them.
 
