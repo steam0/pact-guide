@@ -80,6 +80,16 @@ A pact broker is a separate application which should be a part of any system imp
 
 <img src="https://github.com/steam0/pact-guide/blob/master/images/cdc_publishing_contracts.png?raw=true" width="60%">
 
+## Pact-dashboard
+
+The Pact broker provides a simple web application that will show information about all pacts registered. The broker will display who the consumer is, which provider the pact is for and whether or not the pact has been verified by the provider application.
+
+<img src="https://github.com/steam0/pact-guide/blob/master/images/pact-example.png?raw=true" width="70%">
+
+The dashboard provided by the pact broker can also display dependency graphs based on all pacts. This will be very helpfull since it gives an automatically updated view of all dependencies and that will be usefull while updating existing services or developing new services.
+
+<img src="https://github.com/steam0/pact-guide/blob/master/images/simple-dependency-graph.png?raw=true" width="70%">
+
 ## Why you should apply Consumer Driven Contracts to your system
 
 > If you don't know who your consumers are you will not be able to predict how your API is being used.
@@ -148,19 +158,13 @@ Even though API versioning makes it possible to support consumers depending on o
 
 Consumer Driven Contracts can also be used to drive API design. When a service requests a new API from a provider misunderstandings will occur. By letting the consumer asking for the new API write consumer contracts before starting developing the new endpoint makes it much easier for developers of the providing service to know what the consuming service needs and expects.
 
-## Pact-dashboard
-
-The Pact broker provides a simple web application that will show information about all pacts registered. The broker will display who the consumer is, which provider the pact is for and whether or not the pact has been verified by the provider application.
-
-<img src="https://github.com/steam0/pact-guide/blob/master/images/pact-example.png?raw=true" width="70%">
-
-The dashboard provided by the pact broker can also display dependency graphs based on all pacts. This will be very helpfull since it gives an automatically updated view of all dependencies and that will be usefull while updating existing services or developing new services.
-
-<img src="https://github.com/steam0/pact-guide/blob/master/images/simple-dependency-graph.png?raw=true" width="70%">
-
 ## Summary
 
 Consumer Driven Contracts is all about giving developers the confidence needed while creating new versions of an application. Since developers can confirm all changes in an API by validating consumer contracts they get assurance that their code does not brake consumers. It seems like a good idea to combine API-versioning and Consumer Driven Contracts since this versioning decouples the application from its consumers, and Consumer Driven Contracts verifies when it is needed to create a new API-version.
+
+Pact is a framework for writing Consumer Driven Contracts where the consumer write mocked integration tests and uploads them to a pact broker. API providers can then download pacts from this broker and validate them in the build process. Pact support many different programming languages and is very easy to start to use.
+
+Consumer Driven Contracts can also be used to drive API-design by creating consumer contracts before the API. By doing this consumers will provide accurate feedback to the provider to make it easier for them to create the API.
 
 # Pact Demo Installation and Testing Guide
 
