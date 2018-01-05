@@ -26,7 +26,11 @@ The tests do not require any external applications to be running, and they are r
 
 Integration tests verify integrations between applications. They typically call endpoints provided by an external application and verify the response. Integration tests rely on an external service and are more expensive than unit tests. Integration tests require that all external services are online for the tests to pass. If an external service is not online, the test can fail without good feedback about why it failed.
 
+<<<<<<< HEAD
 Integration tests can also be created without an external call and with mocked responses that you can run your tests with. Using mocks reduces the cost of running integration tests, but it also removes some of the confidence that the integration test is supposed to give.
+=======
+Integration tests can also be created without an external call and with mocked responses that you can run your tests with. Using mocks reduces the cost of running integration tests, but it also removes some of the confidence that the integration test is supposed to gice.
+>>>>>>> d93cf4f0d29d3be28eb84bb4c7ee46472a1cfb70
 
 <img src="https://github.com/steam0/pact-guide/blob/master/images/integration_test_graph.png?raw=true" width="60%">
 
